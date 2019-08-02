@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Izdavanje mjenica</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("NovaMjenica", "Mjenica", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            
+            <button class="btn btn-default" type="submit">Nova mjenica</button>
+        }
+    </div>
+</div>

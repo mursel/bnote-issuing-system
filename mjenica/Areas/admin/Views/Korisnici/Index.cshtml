@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Novi korisnik";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<br />
+<ul class="list-group">
+    <li class="list-group-item">@Html.ActionLink("Novi korisnik", "NoviKorisnik", "Korisnici", new { area = "admin" }, null)</li>
+    <li class="list-group-item">@Html.ActionLink("Pregled korisnika", "PregledKorisnika", "Korisnici", new { area = "admin" }, null)</li>
+</ul>

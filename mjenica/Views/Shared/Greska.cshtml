@@ -1,0 +1,23 @@
+﻿@model mjenica.Areas.admin.Models.ModelStatus
+
+@{
+    ViewBag.Title = "Greska";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+
+<h2>Greska</h2>
+
+<div>
+    <h4>Status greske:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Detalji:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+    </dl>
+</div>

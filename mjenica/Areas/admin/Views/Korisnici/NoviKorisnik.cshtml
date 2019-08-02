@@ -1,0 +1,41 @@
+﻿@model mjenica.Areas.admin.Models.Korisnik
+@{
+    ViewBag.Title = "NoviKorisnik";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Unos novog korisnika</h2>
+
+@*@using (Html.BeginForm("NoviKorisnik", "Korisnici", new { area = "admin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))*@
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Korisnicki podaci</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Unesi" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

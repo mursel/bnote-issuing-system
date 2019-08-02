@@ -1,0 +1,52 @@
+﻿@model IEnumerable<mjenica.Areas.admin.Models.Korisnik>
+
+@{
+    ViewBag.Title = "Pregled korisnika";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+    var grid = new WebGrid(Model, rowsPerPage: 20, canPage:true);
+}
+
+<h2>Pregled korisnika</h2>
+
+<style>
+    table {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+        width: 550px;
+    }
+
+        table th {
+            background: #333333;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+            width: 250px;
+        }
+
+        table td {
+            background: #dcddc0;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+            width: 250px;
+        }
+
+    .foot {
+        text-align: center;
+    }
+</style>
+
+@grid.GetHtml(tableStyle: "table", footerStyle: "foot",
+    columns:
+        grid.Columns(
+            grid.Column("UserID", header: "Šifra", canSort: true),
+            grid.Column("Username", header: "Korisnicko ime", canSort: true),
+            grid.Column(format: (item) => Html.ActionLink("Izmjeni", "IzmjenaKorisnika", "Korisnici", new { id = item.Id }, null))
+        )
+)

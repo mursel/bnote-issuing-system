@@ -1,0 +1,31 @@
+﻿@using mjenica.Models
+@model LoginModel
+
+@{
+    ViewBag.Title = "Prijava na sistem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.ReturnUrl = Request["ReturnUrl"];
+}
+
+<h2>Prijava</h2>
+
+@using (Html.BeginForm("Login", "Racuni", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken();
+    <br />
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="form-group">
+                <label for="txtUser">Korisničko ime: </label>
+                @Html.TextBoxFor(m => m.KorisnickoIme, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="txtUser">Lozinka: </label>
+                @Html.PasswordFor(m => m.Lozinka, new { @class = "form-control" })
+            </div>
+        <button type="submit" class="btn btn-default">Prijavi se!</button>
+        </div>
+    </div>
+    <br />
+}
+

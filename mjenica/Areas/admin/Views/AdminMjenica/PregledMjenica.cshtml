@@ -1,0 +1,56 @@
+﻿@model IEnumerable<mjenica.Areas.admin.Models.Mjenica>
+
+@{
+    ViewBag.Title = "Pregled mjenica";
+    Layout = "~/Areas/admin/Views/Shared/_LayoutPage1.cshtml";
+    var grid = new WebGrid(Model, rowsPerPage: 20, canPage: true);
+}
+
+<h2>Pregled mjenica</h2>
+
+<style>
+    table {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+        width: 550px;
+    }
+
+        table th {
+            background: #333333;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+            width: 250px;
+        }
+
+        table td {
+            background: #dcddc0;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+            width: 250px;
+        }
+
+    .foot {
+        text-align: center;
+    }
+</style>
+
+@grid.GetHtml(tableStyle: "table", footerStyle: "foot",
+    columns:
+        grid.Columns(
+            grid.Column("Datum", header: "Datum izdavanja", canSort: false),
+            grid.Column("SifraKorisnika", header: "Šifra korisnika", canSort: true),
+            grid.Column("BrojMjenice", header: "Broj mjenice", canSort: true),
+            grid.Column("JeValidna", header: "Je validna?", canSort:true),
+            grid.Column(format: (item) => Html.ActionLink("Izmjeni", "IzmjenaMjenice", "AdminMjenica", new { id = item.MjenicaId }, null))
+        ),
+    mode: WebGridPagerModes.All,
+    numericLinksCount: 20
+)
